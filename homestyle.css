@@ -9,6 +9,7 @@ body {
     font-family: 'Arial', sans-serif;
     color: #333;
     line-height: 1.6;
+    margin: 0;
 }
 
 /* Header */
@@ -25,12 +26,12 @@ body {
 }
 
 .logo img {
-    max-height: 80px;
-    width: auto;
-    display: block;
+    max-height: 80px; /* Adjust height to fit */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures no inline space */
 }
 
-.logo {
+.logo{
     text-align: center;
 }
 
@@ -39,10 +40,11 @@ body {
     display: flex;
     justify-content: center;
     gap: 35px;
+    flex-wrap: wrap;
 }
 
 .navbar ul li {
-    margin: 20px;
+    margin: 20;
 }
 
 .navbar ul li a {
@@ -57,8 +59,8 @@ body {
 
 /* Hero Section */
 .hero {
-    position: relative;
-    height: 100vh;
+    position: relative; /* Ensures proper stacking of content and video */
+    height: 100vh; /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,6 +70,7 @@ body {
     background: whitesmoke;
 }
 
+/* Hero Content (Text & Button) */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -92,6 +95,8 @@ body {
     padding: 0.8em 1.5em;
     border-radius: 5px;
     text-decoration: none;
+    z-index: 2;
+    position: relative;
 }
 
 .btn:hover {
@@ -99,6 +104,7 @@ body {
     color: black;
 }
 
+/* Video Wrapper */
 .hero-video-wrapper {
     position: absolute;
     top: 0;
@@ -175,32 +181,8 @@ body {
         margin-bottom: 10px;
     }
 
-    .navbar ul {
-        flex-direction: column;
-        gap: 20px;
-    }
-
     .hero-content h2 {
         font-size: 2em;
-    }
-
-    .hero-content p {
-        font-size: 1.1em;
-    }
-
-    .hero-video-wrapper video {
-        object-fit: cover;
-    }
-
-    .btn {
-        padding: 0.6em 1em;
-    }
-}
-
-/* For mobile devices (max-width: 480px) */
-@media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.8em;
     }
 
     .hero-content p {
@@ -208,65 +190,178 @@ body {
     }
 
     .btn {
-        padding: 0.5em 1em;
+        font-size: 1em;
+        padding: 0.8em 1.2em;
     }
 
-    .container {
-        width: 90%;
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar ul li a {
+        font-size: 1.2em;
+    }
+
+    .divisions-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .division-card {
+        width: 90%; /* Makes the division cards smaller on mobile */
+        margin: auto;
+    }
+
+    .division-card img {
+        width: 100%;
+        height: auto;
     }
 
     .section-title {
         font-size: 2em;
     }
 
-    .divisions-container {
-        flex-direction: column;
-    }
-
-    .division-card {
-        width: 100%;
-        height: auto;
-    }
-
-    .products h2 {
-        font-size: 2em;
-    }
-
-    .product-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-item {
-        width: 100%;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%;
-    }
-
     .social-responsibility h2 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
 
     .circle {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
     }
 
-    .circle h3 {
+    .circle img {
+        object-fit: cover;
+    }
+
+    .footer {
+        font-size: 0.9em;
+    }
+
+    .learn-more {
         font-size: 1em;
+        padding: 10px 20px;
     }
 
-    footer {
-        padding: 1em;
+    .map iframe {
+        width: 100%;
+        height: 300px;
     }
+}
 
-    .whatsapp-button {
-        bottom: 10px;
-        right: 10px;
-    }
+/* Divisions Section */
+.divisions-section {
+    padding: 60px 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+.section-title .highlight {
+    color: #3333d2;
+}
+
+.divisions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.division-card {
+    position: relative;
+    width: 350px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.division-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.division-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.division-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.division-card:hover .division-overlay {
+    opacity: 1;
+}
+
+.division-overlay h3 {
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Products Section */
+.products {
+    padding: 2em 0;
+    text-align: center;
+}
+
+.products h2 {
+    margin-bottom: 1.5em;
+}
+
+.product-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    flex: 1 1 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-item h3 {
+    margin: 1em 0;
+}
+
+.product-item p {
+    color: #666;
 }
 
 /* Footer */
@@ -276,6 +371,7 @@ body {
     text-align: center;
     padding: 1em 0;
 }
+
 
 /* Contact Section Layout */
 .contact-section {
@@ -365,3 +461,5 @@ body {
     color: #ff8c00;
     transform: scale(1.2);
 }
+
+
